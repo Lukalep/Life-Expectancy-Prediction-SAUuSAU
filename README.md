@@ -71,11 +71,10 @@ Nad Random Forest modelom je u Fazi 4 izvršeno i fino podešavanje (Tuning) par
 
 Kvalitet modela evaluiran je kroz tri standardne metrike mašinskog učenja: MAE (Srednja apsolutna greška), RMSE (Kvadratna greška) i R2 Score (Koeficijent determinacije).
 
-Tabela 1: Uporedni prikaz polaznih (Baseline) modela:
-Algoritam               MAE (godine)    RMSE          R^2 Score
-Linear Regression       2.802155        3.693404      0.842351
-Gradient Boosting       1.254102        1.832210      0.961204
-Random Forest (Base)    1.043210        1.662144      0.968112
+Uporedni prikaz polaznih (Baseline) modela:
+Algoritam: Linear Regression MAE (godine): 2.802155   RMSE: 3.693404   R^2 Score: 0.842351
+Algoritam: Gradient Boosting MAE (godine): 1.254102   RMSE: 1.832210   R^2 Score: 0.961204
+Algoritam: Random Forest (Base) MAE (godine): 1.043210   RMSE: 1.662144    R^2 Score: 0.968112
 
 Nakon sprovođenja GridSearchCV optimizacije, pronađeni su najbolji hiperparametri: n_estimators=200, max_depth=20, min_samples_split=2, max_features=None.
 
