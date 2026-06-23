@@ -72,8 +72,11 @@ Nad Random Forest modelom je u Fazi 4 izvršeno i fino podešavanje (Tuning) par
 Kvalitet modela evaluiran je kroz tri standardne metrike mašinskog učenja: MAE (Srednja apsolutna greška), RMSE (Kvadratna greška) i R2 Score (Koeficijent determinacije).
 
 Uporedni prikaz polaznih (Baseline) modela:
+
 Algoritam: Linear Regression MAE (godine): 2.802155   RMSE: 3.693404   R^2 Score: 0.842351
+
 Algoritam: Gradient Boosting MAE (godine): 1.254102   RMSE: 1.832210   R^2 Score: 0.961204
+
 Algoritam: Random Forest (Base) MAE (godine): 1.043210   RMSE: 1.662144    R^2 Score: 0.968112
 
 Nakon sprovođenja GridSearchCV optimizacije, pronađeni su najbolji hiperparametri: n_estimators=200, max_depth=20, min_samples_split=2, max_features=None.
@@ -110,9 +113,9 @@ Svi preostali atributi pojedinačno (uključujući GDP, alkohol, BMI i vakcine) 
 
     Analiza Inženjerskog kompromisa (Trade-off): Na osnovu rang liste, kreiran je redukovani model koji koristi samo Top 5 najvažnijih atributa. Rezultati poređenja su fascinantni:
 
-Konfiguracija modela	              MAE (godine)	    RMSE	      R^2 Score
-Kompletan model (16 atributa)	      1.026655	        1.638804	  0.968951
-Redukovani model (Top 5 atributa)	  1.138966	        1.756666	  0.964325
+Konfiguracija modela: Kompletan model (16 atributa)    MAE (godine): 1.026655     RMSE: 1.638804    R^2 Score: 0.968951
+
+Konfiguracija modela: Redukovani model (Top 5 atributa)   MAE (godine): 1.138966    RMSE: 1.756666   R^2 Score: 0.964325
 
 Tumačenje: Smanjenjem broja ulaznih parametara za skoro 70% (sa 16 na 5), model je izgubio svega 0.004 (0.4%) na svom R^2 skoru, dok se prosečna greška povećala za zanemarljivih 40 dana. To dokazuje da preostalih 11 atributa unose veliku količinu informacionog šuma koji ansambl stabala uspešno neutrališe.
 
