@@ -33,10 +33,10 @@ os.makedirs(data_dir, exist_ok=True)
 os.makedirs(plots_dir, exist_ok=True)
 
 # =====================================================================
-# 🛠️ FAZA 1: POČETNO PREPROCESIRANJE PODATAKA
+# FAZA 1: POČETNO PREPROCESIRANJE PODATAKA
 # =====================================================================
 print("\n" + "="*60)
-print(" 🛠️ FAZA 1: POČETNO PREPROCESIRANJE PODATAKA")
+print(" FAZA 1: POČETNO PREPROCESIRANJE PODATAKA")
 print("="*60)
 
 print(f"Učitavam sirove podatke sa lokacije:\n   {csv_path}")
@@ -44,7 +44,7 @@ try:
     df = pd.read_csv(csv_path)
     print("[OK] Podaci uspešno učitani.")
 except FileNotFoundError:
-    print(f"❌ Greška: Fajl 'data.csv' nije pronađen u folderu {data_dir}")
+    print(f" Greška: Fajl 'data.csv' nije pronađen u folderu {data_dir}")
     exit()
 
 # Čišćenje naziva kolona od skrivenih razmaka
@@ -75,14 +75,14 @@ print("[OK] Kolona 'Status' uspešno enkodirana (Developed: 1, Developing: 0).")
 
 # Čuvanje očišćenih podataka
 df.to_csv(cleaned_csv_path, index=False)
-print(f"💾 Očišćeni podaci sačuvani na: {cleaned_csv_path}")
+print(f" Očišćeni podaci sačuvani na: {cleaned_csv_path}")
 
 
 # =====================================================================
-# 📊 FAZA 2: EKSPLORATIVNA ANALIZA PODATAKA (EDA)
+# FAZA 2: EKSPLORATIVNA ANALIZA PODATAKA (EDA)
 # =====================================================================
 print("\n" + "="*60)
-print(" 📊 FAZA 2: EKSPLORATIVNA ANALIZA PODATAKA (EDA)")
+print("  FAZA 2: EKSPLORATIVNA ANALIZA PODATAKA (EDA)")
 print("="*60)
 print("Generišem vizuelne prikaze i grafikone...")
 
@@ -144,10 +144,10 @@ print(f"[OK] Generisano 5 EDA grafikona u folderu:\n     {plots_dir}")
 
 
 # =====================================================================
-# 🤖 FAZA 3: ODABIR I TRENIRANJE MODELA (BASELINES)
+# FAZA 3: ODABIR I TRENIRANJE MODELA (BASELINES)
 # =====================================================================
 print("\n" + "="*60)
-print(" 🤖 FAZA 3: ODABIR I TRENIRANJE MODELA (BASELINES)")
+print(" FAZA 3: ODABIR I TRENIRANJE MODELA (BASELINES)")
 print("="*60)
 
 # Selekcija atributa na osnovu donetih EDA odluka (uklanjanje multikolinearnosti i nekorigovanih kolona)
@@ -195,10 +195,10 @@ print(df_rezultati.to_string())
 
 
 # =====================================================================
-# 🎯 FAZA 4: PODEŠAVANJE HIPERPARAMETARA KREIRANOG MODELA
+# FAZA 4: PODEŠAVANJE HIPERPARAMETARA KREIRANOG MODELA
 # =====================================================================
 print("\n" + "="*60)
-print(" 🎯 FAZA 4: PODEŠAVANJE HIPERPARAMETARA (GRID SEARCH)")
+print(" FAZA 4: PODEŠAVANJE HIPERPARAMETARA (GRID SEARCH)")
 print("="*60)
 print("Pokrećem unakrsnu validaciju za optimizaciju Random Forest modela...")
 
@@ -214,7 +214,7 @@ param_grid = {
 grid_search = GridSearchCV(estimator=rf_base, param_grid=param_grid, cv=3, scoring='r2', n_jobs=-1, verbose=0)
 grid_search.fit(X_train, y_train)
 
-print("\n🏆 NAJBOLJI PRONAĐENI HIPERPARAMETRI:")
+print("\n NAJBOLJI PRONAĐENI HIPERPARAMETRI:")
 print(grid_search.best_params_)
 
 # Evaluacija optimizovanog modela na test skupu
@@ -225,17 +225,17 @@ mae_opt = mean_absolute_error(y_test, y_pred_opt)
 rmse_opt = np.sqrt(mean_squared_error(y_test, y_pred_opt))
 r2_opt = r2_score(y_test, y_pred_opt)
 
-print("\n✨ KONAČNE PERFORMANSE OPTIMIZOVANOG MODELA (16 ATRIBUTA):")
+print("\n KONAČNE PERFORMANSE OPTIMIZOVANOG MODELA (16 ATRIBUTA):")
 print(f"   MAE:      {mae_opt:.6f} (prosečna greška u godinama života)")
 print(f"   RMSE:     {rmse_opt:.6f}")
 print(f"   R2 Score: {r2_opt:.6f}")
 
 
 # =====================================================================
-# 🔍 FAZA 5: ODABIR NAJZNAČAJNIJIH ATRIBUTA I DEPLOYMENT
+# FAZA 5: ODABIR NAJZNAČAJNIJIH ATRIBUTA I DEPLOYMENT
 # =====================================================================
 print("\n" + "="*60)
-print(" 🔍 FAZA 5: ODABIR NAJZNAČAJNIJIH ATRIBUTA I DEPLOYMENT")
+print(" FAZA 5: ODABIR NAJZNAČAJNIJIH ATRIBUTA I DEPLOYMENT")
 print("="*60)
 
 # Izdvajanje značajnosti atributa
@@ -259,7 +259,7 @@ print(df_importance.to_string(index=False))
 
 # Odabir TOP 5 najznačajnijih atributa
 top_features = df_importance['Atribut'].head(5).tolist()
-print(f"\n🎯 Selektujem top 5 najznačajnijih atributa za redukovani model:")
+print(f"\n Selektujem top 5 najznačajnijih atributa za redukovani model:")
 for idx, feat in enumerate(top_features, 1):
     print(f"   {idx}. {feat}")
 
@@ -298,10 +298,10 @@ print(f"\n💾 Konačni model uspešno eksportovan u: {model_path}")
 
 
 # =====================================================================
-# 💻 INTERAKTIVNI KORISNIČKI INTERFEJS (UI)
+#  INTERAKTIVNI KORISNIČKI INTERFEJS (UI)
 # =====================================================================
 print("\n" + "="*60)
-print(" 💻 INTERAKTIVNI KORISNIČKI INTERFEJS (UI)")
+print(" INTERAKTIVNI KORISNIČKI INTERFEJS (UI)")
 print("="*60)
 print("Unesite tražene socio-ekonomske i zdravstvene pokazatelje")
 print("kako bi model uživo izračunao očekivani životni vek u godinama.\n")
@@ -321,9 +321,9 @@ try:
     predikcija = final_model.predict(korisnicki_unos)[0]
     
     print("\n" + "*"*50)
-    print(f"🔮 REZULTAT PREDIKCIJE MODELA:")
+    print(f" REZULTAT PREDIKCIJE MODELA:")
     print(f"   Očekivani životni vek za unete parametre je: {predikcija:.2f} godina.")
     print("*"*50 + "\n")
 
 except ValueError:
-    print("\n❌ Greška: Molimo unesite ispravne numeričke vrednosti.")
+    print("\n Greška: Molimo unesite ispravne numeričke vrednosti.")
